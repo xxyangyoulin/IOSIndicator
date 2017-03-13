@@ -1,6 +1,7 @@
 # IOSIndicator
 仿IOS风格ViewPager or Fragment 指示器.
 
-- ![截图](https://github.com/mnnyang/IOSIndicator/tree/master/screenshot/screenshot2.png)
-- ![自己小项目的截图](https://github.com/mnnyang/IOSIndicator/tree/master/screenshot/screenshot1.png)
+<img src="screenshot/screenshot2.png" width="25%" />
+<img src="screenshot/screenshot1.png" width="25%" />
+
 
