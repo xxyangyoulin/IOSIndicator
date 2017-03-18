@@ -6,12 +6,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import java.util.Arrays;
-import java.util.Random;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private IOSIndicator indicator;
     private TextView tv;
+    private int currentPage;
+
+    List<String> titles = Arrays.asList("首页", "社区", "我", "设置");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,23 +22,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         indicator = (IOSIndicator) findViewById(R.id.indicator);
-        indicator.setItemTitles(Arrays.asList("首页", "社区", "我", "设置"));
+        indicator.setItemTitles(titles);
 
-        //主动切换 点击监听
-        indicator.setClickListener(new IOSIndicator.ClickListener() {
+        //主动切换 切换监听
+        indicator.setSwitchListener(new IOSIndicator.ClickListener() {
             @Override
-            public void onClick(int currentIndex) {
-                System.out.println("点击了--" + currentIndex);
+            public void onClick(int currentIndex, boolean isRepeat) {
+                if (!isRepeat) {
+                    System.out.println("点击了--" + currentIndex);
+                }
             }
         });
     }
 
     public void click(View v) {
-        Random random = new Random();
-        int ran = random.nextInt(4);
+        if (currentPage >= titles.size()) {
+            currentPage = 0;
+        }
 
         //被动切换
-        indicator.setCurrentPage(ran);
+        indicator.setCurrentPage(currentPage++);
 
     }
 }

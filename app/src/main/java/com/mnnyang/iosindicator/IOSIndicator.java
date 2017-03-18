@@ -253,14 +253,21 @@ public class IOSIndicator extends View {
         return true;
     }
 
+
     private void handleActionUp(float x, float y) {
         if (y <= height && y >= 0) {//手指移除范围
+            int newCurrentPage = (int) (x / itemWidth);
 
-            currentPage = (int) (x / itemWidth);
-
-
-            if (mListener != null) {
-                mListener.onClick(currentPage);
+            if (currentPage == newCurrentPage) {
+                //已经是当前页
+                if (mListener != null) {
+                    mListener.onClick(newCurrentPage, true);
+                }
+            } else {
+                if (mListener != null) {
+                    mListener.onClick(newCurrentPage, false);
+                }
+                currentPage = newCurrentPage;
             }
 
             invalidate();
@@ -274,22 +281,26 @@ public class IOSIndicator extends View {
 
     private ClickListener mListener;
 
-    public void setClickListener(ClickListener listener) {
+    /**
+     * 设置item切换监听
+     * @param listener
+     */
+    public void setSwitchListener(ClickListener listener) {
         mListener = listener;
     }
 
     public interface ClickListener {
-        void onClick(int currentIndex);
+        /**
+         *
+         * @param currentIndex 当前点击页数
+         * @param isRepeat 是否重复点击
+         */
+        void onClick(int currentIndex, boolean isRepeat);
     }
 
     public int dp2px(float dpValue) {
         final float scale = getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
-    }
-
-    public int sp2px(float spValue) {
-        final float fontScale = getContext().getResources().getDisplayMetrics().scaledDensity;
-        return (int) (spValue * fontScale + 0.5f);
     }
 
     /*
