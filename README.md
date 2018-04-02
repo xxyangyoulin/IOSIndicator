@@ -5,7 +5,6 @@
 <img src="https://github.com/mnnyang/IOSIndicator/blob/master/screenshot/screenshot1.png" width="25%" /><img src="https://github.com/mnnyang/IOSIndicator/blob/master/screenshot/screenshot2.png" width="25%" />
 
 1.  
-
     ```java
     allprojects {
         repositories {
@@ -38,5 +37,5 @@
          
          
     //switch
-    indicator.setCurrentPage(currentPage++);
+    indicator.setCurrentPage(currentPage);
 ```
