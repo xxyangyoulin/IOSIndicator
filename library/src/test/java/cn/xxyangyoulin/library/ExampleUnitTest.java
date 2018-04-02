@@ -1,4 +1,4 @@
-package com.mnnyang.iosindicator;
+package cn.xxyangyoulin.library;
 
 import org.junit.Test;
 
